@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React from "react";
+import AddTodo from "./Components/AddTodo"
+import TodoItem from "./Components/TodoItem"
+
+
+
 
 function App() {
+ const [todos, setTodos]= React.useState([]);
+    
+ const handleAdd= (text)=>{
+      const newTodo= 
+      {
+          title:text,
+          status:false,
+          id:Math.random()
+      };
+    
+    setTodos([...todos, newTodo]);
+    };
+    console.log(todos);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <AddTodo handleAdd= {handleAdd}/>
+
+       <div>
+        {todos.map((el)=> (
+          <TodoItem
+          key={el.id}
+         title={el.title}
+         status={el.status}
+         id={el.id} />))}
+   
+       </div>
     </div>
   );
 }
