@@ -11,7 +11,6 @@ function AddTodo({handleAdd}){
         handleAdd(text);
         setText("");
     };
-    
 
     return (
  

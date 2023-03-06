@@ -14,12 +14,28 @@ function App() {
       const newTodo= 
       {
           title:text,
-          status:false,
+          status:false, 
           id:Math.random()
       };
     
     setTodos([...todos, newTodo]);
     };
+
+    const handleToggle= (id)=>{
+      
+    const todoafterupdate=todos.map((todo)=>{
+      return todo.id===id?{...todo,status:!todo.status}:todo;}
+
+    );
+      
+    setTodos(todoafterupdate);
+    };
+   
+  const handledelete = (id)=>{
+    const todoafterdelete=todos.filter((todo)=>todo.id!==id);
+    setTodos(todoafterdelete);
+  }
+
     console.log(todos);
 
 
@@ -33,7 +49,10 @@ function App() {
           key={el.id}
          title={el.title}
          status={el.status}
-         id={el.id} />))}
+         id={el.id}
+         handleToggle= {handleToggle}
+         handledelete={handledelete}
+          />))}
    
        </div>
     </div>
@@ -41,3 +60,4 @@ function App() {
 }
 
 export default App;
+ 
